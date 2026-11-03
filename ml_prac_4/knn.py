@@ -13,7 +13,7 @@ data = pd.DataFrame({
 })
 print(data.to_string(index=False))
 
-Q = np.array([4, 4])                     # the new point we want to classify
+Q = np.array([4, 4])                     
 print("\nNew point Q =", tuple(Q.tolist()))
 print()
 
@@ -23,7 +23,7 @@ data["Distance"] = np.sqrt(((points - Q) ** 2).sum(axis=1))
 
 # sort so the nearest point comes first
 ranked = data.sort_values("Distance").reset_index(drop=True)
-ranked.index = ranked.index + 1          # rank starts at 1
+ranked.index = ranked.index + 1          
 ranked.index.name = "Rank"
 print(ranked.round(3).to_string())
 print()
@@ -31,8 +31,8 @@ print()
 # classification for different k
 results = []
 for k in [1, 3, 5]:
-    nearest = ranked.head(k)             # the K closest points
-    votes = Counter(nearest["Class"])    # count the classes among them
+    nearest = ranked.head(k)             
+    votes = Counter(nearest["Class"])    
     predicted = votes.most_common(1)[0][0]
 
     print(f"K = {k}")
